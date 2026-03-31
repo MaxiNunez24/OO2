@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Twitter{
+    + agregarUsuario(Usuario usuario)
+    + eliminarUsuario(Usuario usuario)
+    - validarScreenName(String screenName): Boolean
+}
+
+class Usuario{
+    - screenName: String
+    + postearTweet(String texto)
+    + leerTweet(TweetBase tweet)
+    + eliminarTweet(TweetBase tweet)
+}
+
+abstract class TweetBase {
+    # fecha: Date
+    + conozcoTweet(Tweet tweet): Boolean
+}
+
+class Tweet{
+    - texto: String
+}
+
+class ReTweet
+
+
+Twitter -> "*" Usuario : usuarios
+Usuario -> "*" TweetBase : tweets
+ReTweet --> TweetBase : tweetOriginal
+TweetBase <|-- ReTweet
+TweetBase <|-- Tweet
+
+
+@enduml
