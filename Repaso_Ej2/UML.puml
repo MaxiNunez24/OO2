@@ -1,0 +1,60 @@
+@startuml
+
+abstract class Juego{
+    + abstract contra(Juego otro): Juego
+    + abstract juegaContraPiedra(): Juego
+    + abstract juegaContraPapel(): Juego
+    + abstract juegaContraTijera(): Juego
+}
+
+class Piedra{
+    + contra(Juego otro): Juego
+    + juegaContraPiedra(): Juego
+    + juegaContraPapel(): Juego
+    + juegaContraTijera(): Juego
+
+}
+
+class Papel{
+    + contra(Juego otro): Juego
+    + juegaContraPiedra(): Juego
+    + juegaContraPapel(): Juego
+    + juegaContraTijera(): Juego
+}
+
+class Tijera{
+    + contra(Juego otro): Juego
+    + juegaContraPiedra(): Juego
+    + juegaContraPapel(): Juego
+    + juegaContraTijera(): Juego
+}
+
+class Empate{
+    + contra(Juego otro): Juego
+    + juegaContraPiedra(): Juego
+    + juegaContraPapel(): Juego
+    + juegaContraTijera(): Juego
+}
+
+class Lagarto{
+    + contra(Juego otro): Juego
+    + juegaContraPiedra(): Juego
+    + juegaContraPapel(): Juego
+    + juegaContraTijera(): Juego
+}
+
+class Spock {
+    + contra(Juego otro): Juego
+    + juegaContraPiedra(): Juego
+    + juegaContraPapel(): Juego
+    + juegaContraTijera(): Juego
+}
+
+Juego <-- Tijera
+Juego <-- Piedra
+Juego <-- Papel
+Juego <-- Empate
+Juego <-- Lagarto
+Juego <-- Spock
+
+@enduml

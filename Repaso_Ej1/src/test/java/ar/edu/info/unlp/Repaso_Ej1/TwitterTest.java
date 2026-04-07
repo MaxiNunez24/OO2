@@ -3,6 +3,8 @@ package ar.edu.info.unlp.Repaso_Ej1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.StringWriter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TwitterTest {
@@ -24,4 +26,6 @@ public class TwitterTest {
         assertFalse(twitter.agregarUsuario(pedro));
         assertTrue(twitter.agregarUsuario(juan));
     }
+
+    // TODO: Testear con AssertEquals si un ReTweet a un tweet eliminado imprime el mensaje correspondiente
 }

@@ -13,16 +13,15 @@ public class Usuario {
         this.tweets = new ArrayList<>();
     }
 
-    public void postearTweet(String tweet) {
-
+    public boolean postearTweet(String tweet) {
+        if(tweet.length() > 1 && tweet.length() <= 280){
+            tweets.add(new Tweet(tweet));
+            return true;
+        } else return false;
     }
 
-    public void leerTweet(TweetBase tweet){
-
-    }
-
-    public void eliminarTweet(TweetBase tweet){
-
+    public void eliminarTweets() {
+        tweets.forEach(Tweet::autoEliminar);
     }
 
     public boolean mismoScreenName(Usuario usuario){

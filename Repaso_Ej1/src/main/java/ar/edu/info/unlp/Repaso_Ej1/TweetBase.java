@@ -6,6 +6,10 @@ public abstract class TweetBase {
 
     protected LocalDate fecha;
 
-    public abstract boolean conozcoTweet(Tweet tweet);
+    public abstract boolean conozcoTweet(TweetBase tweet);
+
+    public abstract void leer();
+
+    public abstract void autoEliminar();
 
 }

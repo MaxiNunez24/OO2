@@ -3,7 +3,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPy5i01QtSaysVwIROuaWOJX3Fq+kIjgxBEXbLEWMEdV
 skinparam classAttributeIconSize 0
 
 class Twitter{
-    + agregarUsuario(Usuario usuario)
+    + agregarUsuario(Usuario usuario): Boolean
     + eliminarUsuario(Usuario usuario)
     - validarScreenName(String screenName): Boolean
 }
@@ -11,21 +11,26 @@ class Twitter{
 class Usuario{
     - screenName: String
     + postearTweet(String texto)
-    + leerTweet(TweetBase tweet)
-    + eliminarTweet(TweetBase tweet)
+    + eliminarTweets()
     + mismoScreenName(String screenName): Boolean
 }
 
 abstract class TweetBase {
     # fecha: Date
     + conozcoTweet(Tweet tweet): Boolean
+    + leer()
 }
 
 class Tweet{
     - texto: String
+    + conozcoTweet(Tweet tweet): Boolean
+    + leer()
 }
 
-class ReTweet
+class ReTweet {
+    + conozcoTweet(Tweet tweet): Boolean
+    + leer()
+}
 
 
 Twitter -> "*" Usuario : usuarios

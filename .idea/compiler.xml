@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Repaso_Ej2" />
         <module name="Repaso_Ej1" />
       </profile>
     </annotationProcessing>

@@ -18,8 +18,9 @@ public class Twitter {
         else return false;
     }
 
-    public void eliminarUsuario(TweetBase tweet){
-
+    public void eliminarUsuario(Usuario usuario){
+        usuario.eliminarTweets();
+        usuarios.remove(usuario);
     }
 
     private boolean validarScreenName(Usuario usuarioNuevo){
