@@ -1,3 +1,4 @@
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPy5i01QtSaysVwIROuaWOJX3Fq+kIjgxBEXbLEWMEdV maxinunez2455@gmail.com
 @startuml
 skinparam classAttributeIconSize 0
 
@@ -12,6 +13,7 @@ class Usuario{
     + postearTweet(String texto)
     + leerTweet(TweetBase tweet)
     + eliminarTweet(TweetBase tweet)
+    + mismoScreenName(String screenName): Boolean
 }
 
 abstract class TweetBase {
