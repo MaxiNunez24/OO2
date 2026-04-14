@@ -1,0 +1,11 @@
+@startuml
+
+class ConcreteCreator
+
+class Product
+
+ConcreteCreator .> Product : <<creates>>
+
+@enduml
+
+// Esta dependencia
