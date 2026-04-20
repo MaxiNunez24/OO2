@@ -81,15 +81,14 @@ public boolean participa(Persona p){
 Dado que en el diseño inicial se tenía el bad smell Feature Envy, se realizó el refactoring Move Method. Este consiste en implementar a su vez Rename Method, Remove Parameter y Add Parameter. El cambio me parece adecuado ya que la clase Persona estaba realizando la responsabilidad que le correspondía a Proyecto al tener esa clase el atributo necesario.
 
 ## 1.3 Cálculos
-Analice el código que se muestra a continuación. Indique qué code smells encuentra y cómo pueden corregirse.	
+Analice el código que se muestra a continuación. Indique qué code smells encuentra y cómo pueden corregirse.
 
 ### Respuesta
 Los code smells encontrados son Long Method, Imperative Loops, Temporary Fields. Para corregir el Long Method se puede aplicar Replace temp with Query y Extract Method
 
 ```java
 public void imprimirValores() {
-	int totalEdades = 0;
-	double promedioEdades = 0;
+	double promedioEdades = this.calcularPromedioEdades();
 	double totalSalarios = 0;
 	
 	for (Empleado empleado : personal) {
@@ -98,9 +97,21 @@ public void imprimirValores() {
 	}
 	promedioEdades = totalEdades / personal.size();
 		
-	String message = String.format("El promedio de las edades es %s y el total de salarios es %s",        promedioEdades, totalSalarios);
+	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
 	
 	System.out.println(message);
+}
+
+public double calcularPromedioEdades(){
+    int totalEdades = 0;
+    
+    personal.stream()
+            . //TODO: Continuar!!
+    for(Empleado empleado : personal){
+        totalEdades += empleado.getEdad();
+    }
+    
+    return totalEdades / personal.size();
 }
 ```
 
