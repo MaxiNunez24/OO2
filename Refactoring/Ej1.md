@@ -89,27 +89,19 @@ Los code smells encontrados son Long Method, Imperative Loops, Temporary Fields.
 ```java
 public void imprimirValores() {
 	double promedioEdades = this.calcularPromedioEdades();
-	double totalSalarios = 0;
-	
-	for (Empleado empleado : personal) {
-		totalEdades = totalEdades + empleado.getEdad();
-		totalSalarios = totalSalarios + empleado.getSalario();
-	}
-	promedioEdades = totalEdades / personal.size();
-		
-	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
+	double totalSalarios = personal.stream()
+            .map(empleado -> empleado.getSalario())
+            .sum();
+    
+    String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
 	
 	System.out.println(message);
 }
 
 public double calcularPromedioEdades(){
-    int totalEdades = 0;
-    
-    personal.stream()
-            . //TODO: Continuar!!
-    for(Empleado empleado : personal){
-        totalEdades += empleado.getEdad();
-    }
+    int totalEdades = personal.stream()
+            .map(empleado -> empleado.getEdad())
+            .sum();
     
     return totalEdades / personal.size();
 }
