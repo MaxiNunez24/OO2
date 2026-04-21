@@ -5,17 +5,13 @@ public class Lagarto extends Juego {
         return otro.contraLagarto();
     }
 
-    public Juego contraPiedra() {
-        return new Piedra();
-    }
+    public Juego contraPiedra() { return new Piedra(); }
 
     public Juego contraPapel() {
         return new Lagarto();
     }
 
-    public Juego contraTijera() {
-        return new Tijera();
-    }
+    public Juego contraTijera() { return new Tijera(); }
 
     public Juego contraSpock(){
         return new Lagarto();

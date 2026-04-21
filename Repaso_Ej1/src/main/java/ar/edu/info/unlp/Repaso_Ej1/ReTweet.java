@@ -20,4 +20,7 @@ public class ReTweet extends TweetBase {
 
     @Override
     public void autoEliminar(){}
+
+
+
 }
