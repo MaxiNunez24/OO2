@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Refactoring_Ej5" />
         <module name="Repaso_Ej2" />
         <module name="Refactoring_Ej3" />
         <module name="Repaso_Ej1" />
