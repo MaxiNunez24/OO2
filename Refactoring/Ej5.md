@@ -69,10 +69,10 @@ public class CarRental extends Product {
 ```
 
 ## Tareas:
-1) La variable “cost” está declarada como pública, lo que rompe el encapsulamiento de la clase. Utilice el refactoring Encapsulate Field y describa brevemente los pasos llevados a cabo. 
-    // TODO: APLICAR SELF ENCAPSULATE FIELD
+1) La variable “cost” está declarada como pública, lo que rompe el encapsulamiento de la clase. Utilice el refactoring Encapsulate Field y describa brevemente los pasos llevados a cabo.
+   Dado que la variable "cost" no es referenciada por ninguna otra clase, se procede a aplicar el refactoring Self Encapsulate Field:
    1. Crear métodos get y set para el atributo "cost"
-   2. Encontrar todas las referencias en otras clases al atributo 
+   2. Encontrar todas las referencias al atributo 
    3. 
 Verifique que los tests provistos sigan funcionando. Discuta con un ayudante: 
    1. ¿Es correcto modificar alguno de los tests para que el código refactorizado funcione?

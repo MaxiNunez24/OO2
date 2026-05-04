@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ar.edu.info.unlp</groupId>
-  <artifactId>refactoring-ej-1</artifactId>
+  <artifactId>Refactoring_Ej5</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>refactoring-ej-1</name>
+  <name>Refactoring_Ej5</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
