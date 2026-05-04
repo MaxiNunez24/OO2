@@ -70,13 +70,15 @@ public class CarRental extends Product {
 
 ## Tareas:
 1) La variable “cost” está declarada como pública, lo que rompe el encapsulamiento de la clase. Utilice el refactoring Encapsulate Field y describa brevemente los pasos llevados a cabo.
-   Dado que la variable "cost" es referenciada por las clases de test, se procede a aplicar el refactoring Encapsulate Field:
    1. Crear método get para el atributo "cost"
    2. Encontrar todas las referencias al atributo
    3. Como el atributo solo es referenciado por las clases de Test ->
-   4. 
+   4. Se reemplazan las referencias por el llamado al método get
+   5. Se encapsula la variable cambiandola a private
+   6. Se compila y se vuelve a correr los tests
 Verifique que los tests provistos sigan funcionando. Discuta con un ayudante: 
    1. ¿Es correcto modificar alguno de los tests para que el código refactorizado funcione?
+      En la mayoría de los casos no es correcto, pero en este caso está justificado debido a que el test está mal hecho debido a que falla y no testea la funcionalidad propia solamente.
    2.  En caso de qué el test falle, ¿qué situación está representando este test?
 2) Utilice el refactoring Rename Field en el método priceFactor(), para que la variable “cost” se pase a llamar “quote”. Verifique que los tests provistos sigan funcionando. Discuta con un ayudante: ¿en este caso, es necesario modificar alguno de los tests para que el código refactorizado funcione?
 3) Se quiere aplicar el refactoring Pull Up Method para subir los métodos startDate() y endDate() a la superclase Product. ¿Es posible hacerlo en el código anterior? Justifique su respuesta basándose en las precondiciones del refactoring vistas en la teoría y en el libro de Refactoring de Martin Fowler.
