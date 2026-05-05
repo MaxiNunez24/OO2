@@ -3,7 +3,7 @@ package ar.edu.info.unlp.refactoring.ejercicio1;
 import java.time.LocalDate;
 
 public class CarRental extends Product {
-    public double cost;
+    private double cost;
     private TimePeriod timePeriod;
     private Company company;
 

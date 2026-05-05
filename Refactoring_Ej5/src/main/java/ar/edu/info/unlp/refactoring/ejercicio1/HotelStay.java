@@ -3,7 +3,7 @@ package ar.edu.info.unlp.refactoring.ejercicio1;
 import java.time.LocalDate;
 
 public class HotelStay extends Product {
-    public double cost;
+    private double cost;
     private TimePeriod timePeriod;
     private Hotel hotel;
 
@@ -23,6 +23,10 @@ public class HotelStay extends Product {
 
     public double priceFactor() {
         return this.cost / this.price();
+    }
+
+    public double getCost(){
+        return this.cost;
     }
 
     public double price() {

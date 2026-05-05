@@ -78,9 +78,11 @@ public class CarRental extends Product {
    6. Se compila y se vuelve a correr los tests
 Verifique que los tests provistos sigan funcionando. Discuta con un ayudante: 
    1. ¿Es correcto modificar alguno de los tests para que el código refactorizado funcione?
-      En la mayoría de los casos no es correcto, pero en este caso está justificado debido a que el test está mal hecho debido a que falla y no testea la funcionalidad propia solamente.
+      En la mayoría de los casos no es correcto, pero en este caso está justificado debido a que el test está mal hecho ya que falla y no testea la funcionalidad propia solamente.
    2.  En caso de qué el test falle, ¿qué situación está representando este test?
+      El primer test que falla está representando la situación de que costo sea null, cosa que no puede pasar ya que es un parámetro del constructor.
 2) Utilice el refactoring Rename Field en el método priceFactor(), para que la variable “cost” se pase a llamar “quote”. Verifique que los tests provistos sigan funcionando. Discuta con un ayudante: ¿en este caso, es necesario modificar alguno de los tests para que el código refactorizado funcione?
+   
 3) Se quiere aplicar el refactoring Pull Up Method para subir los métodos startDate() y endDate() a la superclase Product. ¿Es posible hacerlo en el código anterior? Justifique su respuesta basándose en las precondiciones del refactoring vistas en la teoría y en el libro de Refactoring de Martin Fowler.
 4) Mencione y aplique los refactorings necesarios para poder hacer Pull Up Method.
 5) Aplique Pull Up Method para subir los métodos a la superclase Product. Verifique que los tests provistos sigan funcionando.

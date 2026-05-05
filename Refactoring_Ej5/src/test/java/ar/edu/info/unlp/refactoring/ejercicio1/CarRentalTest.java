@@ -35,8 +35,8 @@ public class CarRentalTest {
 
     @Test
     public void testCost() {
-        assertNotNull(this.alquilerAuto.cost, "El alquiler del auto debe tener un costo");
-        assertEquals(300.0, this.alquilerAuto.cost);
+        assertNotNull(this.alquilerAuto.cost(), "El alquiler del auto debe tener un costo");
+        assertEquals(300.0, this.alquilerAuto.cost());
     }
 
     @Test
