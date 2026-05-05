@@ -35,8 +35,8 @@ public class HotelStayTest {
 
     @Test
     public void testCost() {
-        assertNotNull(this.estadia.getCost(), "La estadia en hotel debe tener un costo");
-        assertEquals(400.0, this.estadia.getCost());
+        assertNotNull(this.estadia.cost(), "La estadia en hotel debe tener un costo");
+        assertEquals(400.0, this.estadia.cost());
     }
 
     @Test

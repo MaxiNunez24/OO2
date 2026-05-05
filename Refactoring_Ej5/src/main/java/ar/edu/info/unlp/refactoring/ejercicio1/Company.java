@@ -16,4 +16,6 @@ public class Company {
     public double promotionRate() {
         return this.promotionRate;
     }
+
+    public double effectivePrice(){ return this.price * this.promotionRate; }
 }

@@ -16,4 +16,8 @@ public class Hotel {
     public double discountRate() {
         return this.discountRate;
     }
+
+    public double effectiveNightPrice(){
+        return nightPrice() * discountRate();
+    }
 }
