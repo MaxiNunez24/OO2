@@ -141,4 +141,12 @@
   
   - Builder
     - Separa la construcción de un objeto complejo de su representación (implementación) de tal manera que el mismo proceso puede construir diferentes representaciones (implementaciones)
-    - 
+
+## Preguntas Explicación práctica 2/6
+
+- No nos van a pedir armar un framework, de seguro nos den uno y tengamos que modificarlo o analizarlo
+
+- Ej: 27 de patrones:
+  - Los States se conocen entre sí y el ejemplo de la opción A no se implementa de forma correcta
+  - Además el Strategy tampoco se implementa adecuadamente, ya que conceptualmente el Strategy implementa algoritmos totalmente independientes y por separados sin que se conozcan entre sí. Mientras que un State debería de ser como una inner class, el obj usuario debería de abstraerse de que existe por debajo un State.
+  - Ejercicio calculadora va con State 
