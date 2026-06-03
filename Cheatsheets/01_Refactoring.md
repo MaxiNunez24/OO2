@@ -109,7 +109,73 @@ Por cada smell, **una iteración**:
 
 ---
 
-## 4. Conceptos para promoción (preguntas a desarrollo)
+### Más mecanismos (set enfocado)
+
+**Extract Class** (Large/God Class, Data Clumps, Divergent Change)
+1. Decidir cómo partir responsabilidades.
+2. Crear la clase nueva.
+3. Move Field + Move Method de lo que corresponde a la nueva clase.
+4. La clase vieja queda con una referencia a la nueva; ajustar accesos.
+
+**Pull Up Method / Pull Up Field** (Duplicated Code en subclases)
+1. Verificar que el método/campo sea idéntico en las subclases (si no, antes
+   ajustar con Rename / Extract para que queden iguales).
+2. Mover el método/campo a la superclase.
+3. Borrarlo de las subclases. Compilar y testear.
+
+**Replace Temp with Query** (Long Method; temp que guarda un cálculo)
+1. Extraer el cálculo de la variable temporal a un método (query).
+2. Reemplazar los usos de la temp por la llamada al query.
+3. Borrar la temp. (Habilita Extract Method porque desaparece una variable local.)
+
+**Decompose Conditional** (Long Method; condicional complejo)
+1. Extract Method de la condición → método con nombre que explica el *qué*.
+2. Extract Method de cada rama (then / else).
+3. Queda `if (esVerano(fecha)) cargo = tarifaVerano(...) else ...`.
+
+**Replace Type Code with State/Strategy** (Switch sobre un "código de tipo")
+- Reemplazar el atributo "tipo" (int/String) por una jerarquía State/Strategy,
+  y mover el comportamiento que dependía del tipo a las subclases.
+- Es el **puente** entre refactoring y patrones.
+
+---
+
+## 5. Refactoring to Patterns (ejercicios 10-12)
+
+> Idea clave: un RtP **no es un paso atómico** — se construye **aplicando otros
+> refactorings** (Move Method, Extract Parameter, Replace Conditional with
+> Polymorphism, etc.). En el parcial NO hace falta explayar esos sub-refactorings
+> salvo que lo pidan.
+
+| RtP | Smell que ataca | Llega a |
+|---|---|---|
+| Form Template Method | Duplicated Code en subclases | Template Method |
+| Extract Adapter | Alternative Classes w/ Diff Interfaces | Adapter |
+| Replace Implicit Tree with Composite | estructura de árbol "a mano" | Composite |
+| Replace Conditional Logic with Strategy | condicional que elige variante | Strategy |
+| Replace State-Altering Conditionals with State | condicionales que cambian estado | State |
+| Move Embellishment to Decorator | subclases que "adornan" comportamiento | Decorator |
+
+### Replace Conditional Logic with Strategy — mecánica (cátedra)
+1. Crear una clase **Strategy**.
+2. **Move Method**: mover el cálculo con los condicionales del contexto al Strategy.
+    - v.i. en el contexto que referencia al strategy + setter (normalmente el constructor).
+    - dejar un método en el contexto que **delegue**.
+    - elegir qué parámetros pasarle al strategy (¿el contexto entero? ¿solo algunas variables?).
+    - compilar y testear.
+3. **Extract Parameter** donde el contexto inicializa un strategy concreto (para que los clientes lo seteen).
+4. **Replace Conditional with Polymorphism** en el método del Strategy.
+5. Compilar y testear con distintas combinaciones.
+
+### Move Embellishment to Decorator — mecánica (cátedra)
+1. Identificar la superclase/interfaz del objeto a decorar (= **Component**). Si no existe, crearla.
+2. **Replace Conditional with Polymorphism** (crea el decorator como subclase del decorado). ¿Alcanza? Si no, seguir.
+3. **Replace Inheritance with Delegation** (el decorator delega en el decorado como clase "hermana").
+4. **Extract Parameter** en el decorator para asignarle el decorado.
+
+---
+
+## 6. Conceptos para promoción (preguntas a desarrollo)
 
 - **¿Para qué refactorizar si el comportamiento es el mismo?** Es una **inversión**:
   mejora la calidad interna para poder **agregar features o corregir bugs** que el
