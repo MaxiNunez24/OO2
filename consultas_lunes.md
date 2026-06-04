@@ -47,9 +47,8 @@
 ## Para pensar yo (conceptuales / estilo promoción) - NO resolver hoy
 - Extract Method: ¿qué pasa si el bloque a extraer produce MÁS de una
   variable de salida? ¿Por qué no se puede hacer directo y qué hago antes?
-  
-  No se puede hacer un Extract Method si el bloque a extraer produce más de una variable de salida.
-  
+
+  No se puede directamente, pero sí podés hacerlo si antes reducís las variables de salida (Split Temporary Variable, Replace Temp with Query, o devolver un objeto).
 
 - ¿Por qué "que compile y pase los tests" NO alcanza para decir que algo
   es un buen refactoring? ¿Qué agrega mirar los smells?
