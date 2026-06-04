@@ -8,9 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="refactoring-ej-1" />
         <module name="Refactoring_Ej5" />
+        <module name="Ej21" />
         <module name="Repaso_Ej2" />
-        <module name="Refactoring_Ej3" />
         <module name="Repaso_Ej1" />
+        <module name="filtros" />
+        <module name="Refactoring_Ej3" />
       </profile>
     </annotationProcessing>
   </component>
