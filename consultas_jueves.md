@@ -13,3 +13,12 @@ SI, en UML y Código
 Suma, sino heredar de clase Test
 
 PUEDE ENTRAR TEST DOUBLES
+
+## Cómo qué ejercicios pueden entrar en el parcial
+
+- Refactoring
+  - 
+- Patrones
+  -
+- Frameworks
+  - 

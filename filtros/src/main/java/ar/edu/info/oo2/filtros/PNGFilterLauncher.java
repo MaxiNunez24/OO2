@@ -71,7 +71,7 @@ public class PNGFilterLauncher {
     }
   }
 
-  static void initializeFilters() {
+  static void   initializeFilters() {
     filters.put("--rainbow", new Rainbow());
     filters.put("--artifacter", new Artifacter());
     filters.put("--rgb-shifter", new RGBShifter());
