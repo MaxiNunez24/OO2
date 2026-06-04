@@ -16,7 +16,7 @@
 
 | Patrón | Tipo | Intención (1 línea) |
 |---|---|---|
-| **Adapter** | Estructural | Adaptar la interfaz de una clase a otra que el cliente espera |
+| **Adapter** | Estructural | Adaptar la interfaz de una clase a otra que el cliente espera (wrapper)|
 | **Template Method** | Comportamiento | Definir el esqueleto de un algoritmo, dejando pasos a las subclases |
 | **Strategy** | Comportamiento | Familia de algoritmos intercambiables, independientes entre sí |
 | **State** | Comportamiento | Cambiar el comportamiento de un objeto según su estado interno |
@@ -69,6 +69,211 @@
 
 ---
 
+## Diagramas de estructura (PlantUML)
+
+> Genéricos (roles + relaciones), no ejemplos. Notación:
+> `<|--` herencia · `<|..` implementa interfaz · `-->` conoce/asocia ·
+> `o-->` agregación · `*-->` composición · `..>` crea/usa
+
+### Strategy
+```plantuml
+@startuml
+interface Strategy {
+  +algoritmo()
+}
+class Context {
+  -strategy: Strategy
+  +setStrategy(s: Strategy)
+  +operacion()
+}
+class ConcreteStrategyA {
+  +algoritmo()
+}
+class ConcreteStrategyB {
+  +algoritmo()
+}
+Context o--> Strategy
+Strategy <|.. ConcreteStrategyA
+Strategy <|.. ConcreteStrategyB
+note right of Context : delega en strategy.algoritmo()\nel cliente elige cuál
+@enduml
+```
+
+### State
+```plantuml
+@startuml
+interface State {
+  +handle(c: Context)
+}
+class Context {
+  -state: State
+  +request()
+  +setState(State: state)
+}
+class ConcreteStateA {
+  +handle(c: Context)
+}
+class ConcreteStateB {
+  +handle(c: Context)
+}
+Context o--> State
+State <|.. ConcreteStateA
+State <|.. ConcreteStateB
+ConcreteStateA ..> ConcreteStateB : transiciona a
+note right of State : los estados se conocen\ny deciden la transición
+note right of Context : setState() es llamado por\nlos ConcreteStates\n flecha "transiciona a"
+@enduml
+```
+
+### Template Method
+```plantuml
+@startuml
+abstract class AbstractClass {
+  +templateMethod()
+  {abstract} #primitiveOp1()
+  {abstract} #primitiveOp2()
+  #hook()
+}
+class ConcreteClass {
+  #primitiveOp1()
+  #primitiveOp2()
+}
+AbstractClass <|-- ConcreteClass
+note right of AbstractClass : templateMethod() llama a\nlas primitivas (IoC)\n\n primitiveOp() : abstracta (la\n subclase DEBE implementar)\n\n hook() : tiene default (la\n subclase PUEDE redefinir) \n\n helper() : NO es abstracto y\n NO se redefine
+@enduml
+```
+
+### Adapter (object adapter)
+```plantuml
+@startuml
+interface Target {
+  +request()
+}
+class Adapter {
+  +request()
+}
+class Adaptee {
+  +specificRequest()
+}
+class Client
+Client --> Target
+Target <|.. Adapter
+Adapter --> Adaptee : delega
+note right of Adapter : request() llama a\nadaptee.specificRequest()
+@enduml
+```
+
+### Composite
+```plantuml
+@startuml
+interface Component {
+  +operation()
+}
+class Leaf {
+  +operation()
+}
+class Composite {
+  +operation()
+  +add(c: Component)
+  +remove(c: Component)
+}
+Component <|.. Leaf
+Component <|.. Composite
+Composite o--> Component : children *
+note right of Composite : operation() recorre los hijos
+@enduml
+```
+
+### Decorator
+```plantuml
+@startuml
+interface Component {
+  +operation()
+}
+class ConcreteComponent {
+  +operation()
+}
+abstract class Decorator {
+  -component: Component
+  +operation()
+}
+class ConcreteDecorator {
+  +operation()
+  +addedBehavior()
+}
+Component <|.. ConcreteComponent
+Component <|.. Decorator
+Decorator o--> Component : envuelve
+Decorator <|-- ConcreteDecorator
+note right of ConcreteDecorator : operation() = super.operation()\n+ comportamiento extra
+@enduml
+```
+
+### Proxy
+```plantuml
+@startuml
+interface Subject {
+  +request()
+}
+class RealSubject {
+  +request()
+}
+class Proxy {
+  +request()
+}
+class Client
+Client --> Subject
+Subject <|.. RealSubject
+Subject <|.. Proxy
+Proxy --> RealSubject : controla acceso
+note right of Proxy : misma interfaz que RealSubject
+@enduml
+```
+
+### Factory Method
+```plantuml
+@startuml
+abstract class Creator {
+  +anOperation()
+  {abstract} +factoryMethod(): Product
+}
+class ConcreteCreator {
+  +factoryMethod(): Product
+}
+interface Product
+class ConcreteProduct
+Creator <|-- ConcreteCreator
+Product <|.. ConcreteProduct
+ConcreteCreator ..> ConcreteProduct : crea
+note right of Creator : anOperation() usa factoryMethod()\n(jerarquías paralelas)
+@enduml
+```
+
+### Builder
+```plantuml
+@startuml
+class Director { 
++construct() 
+}
+interface Builder {
+  +buildPartA()
+  +buildPartB()
+  +getResult(): Product
+}
+class ConcreteBuilder {
+  +buildPartA()
+  +buildPartB()
+  +getResult(): Product
+}
+class Product
+Director o--> Builder
+Builder <|.. ConcreteBuilder
+ConcreteBuilder ..> Product : construye
+@enduml
+```
+
+---
+
 ## ⚠️ Distinciones que SE TOMAN
 
 ### Strategy vs State (¡la estrella!)
@@ -82,11 +287,12 @@
 
 ### Adapter vs Decorator vs Proxy (los 3 wrappers)
 Todos envuelven un objeto, diagramas similares, **propósito distinto**:
-| | Interfaz que ofrece | Propósito |
-|---|---|---|
+
+|  | Interfaz que ofrece | Propósito |
+|--|---|---|
 | **Adapter** | **distinta** a la del objeto | hacer compatible una interfaz |
 | **Decorator** | la **misma** + responsabilidades | agregar comportamiento dinámicamente |
-| **Proxy** | la **misma** | controlar el acceso (lazy, remoto, protección) |
+| **Proxy** | la **misma** | controlar el acceso (lazy, remoto, protección) | 
 
 ### Factory Method vs Builder
 - **Factory Method:** suele aparecer con **jerarquías paralelas** (Creator ↔ Product).

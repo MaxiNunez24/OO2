@@ -181,12 +181,18 @@ Por cada smell, **una iteración**:
   mejora la calidad interna para poder **agregar features o corregir bugs** que el
   diseño actual hace difíciles/riesgosos. Se preserva el comportamiento **observable
   externo**; la estructura interna cambia deliberadamente.
+
+
 - **¿Por qué "compila y pasa los tests" no alcanza?** Eso verifica el
   **comportamiento**; el refactoring es sobre la **calidad interna** (diseño), que se
   diagnostica con los **smells**. Un código correcto puede tener pésimo diseño.
+
+
 - **Precondiciones vs mecanismo:** las **precondiciones** son lo que debe cumplirse
   para aplicar el refactoring de forma **segura** (ej. que el fragmento no tenga
   return/break que salten afuera). El **mecanismo** son los pasos concretos.
+
+
 - **¿Comentario = siempre malo?** No. Es smell cuando **explica qué hace** un bloque
   (síntoma de Extract Method). Es legítimo cuando aclara un **porqué** no obvio, o el
   Javadoc del método.
