@@ -4,7 +4,7 @@
 - Librería de serialización JSON ej 1 patterns
 - Librería de Java Logging
 
-Puede ser que tengamos de utilizar algún método de alguna   
+Puede ser que tengamos de utilizar algún método de alguna, nos ahorraría tiempo repasar todos los que utilizamos para no aprenderlas en el parcial jaja
 
 ## Hace falta implementar los constructores? 
 SI, en UML y Código
@@ -13,12 +13,3 @@ SI, en UML y Código
 Suma, sino heredar de clase Test
 
 PUEDE ENTRAR TEST DOUBLES
-
-## Cómo qué ejercicios pueden entrar en el parcial
-
-- Refactoring
-  - 
-- Patrones
-  -
-- Frameworks
-  - 
