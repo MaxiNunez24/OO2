@@ -16,7 +16,7 @@
 
 | Patrón | Tipo | Intención (1 línea) |
 |---|---|---|
-| **Adapter** | Estructural | Adaptar la interfaz de una clase a otra que el cliente espera (wrapper)|
+| **Adapter** | Estructural | Adaptar la interfaz de una clase a otra que el cliente espera |
 | **Template Method** | Comportamiento | Definir el esqueleto de un algoritmo, dejando pasos a las subclases |
 | **Strategy** | Comportamiento | Familia de algoritmos intercambiables, independientes entre sí |
 | **State** | Comportamiento | Cambiar el comportamiento de un objeto según su estado interno |
@@ -67,6 +67,26 @@
 - **ConcreteCreator**: implementa el factoryMethod → `return new ConcreteProduct`.
 - **Product / ConcreteProduct**: lo que se crea.
 
+### Builder
+- **Director**: conoce el proceso de construcción; llama a los pasos del Builder en orden (`construct()`).
+- **Builder**: interfaz abstracta con los pasos de construcción (`buildPartA()`, `buildPartB()`, `getResult()`).
+- **ConcreteBuilder**: implementa los pasos y ensambla el producto; sabe devolver el resultado (`getResult()`).
+- **Product**: el objeto complejo que se construye.
+
+> Director = "qué pasos y en qué orden"; ConcreteBuilder = "cómo se hace cada paso".
+> El mismo Director + distintos ConcreteBuilder = distintas representaciones del producto.
+
+### Tipos de Proxy (según qué acceso controlan)
+- **Virtual Proxy**: retrasa la creación de un objeto costoso hasta que se necesita
+  de verdad (lazy load). Ej: no cargar una imagen pesada hasta que se va a mostrar.
+- **Remote Proxy**: representa localmente un objeto que vive en otra máquina/proceso;
+  oculta la comunicación de red. El cliente lo usa como si fuera local.
+- **Protection Proxy**: controla el acceso según permisos; deja pasar o no según
+  quién llama. Ej: el ejercicio de protección de acceso a la base de datos.
+
+> Los tres tienen la MISMA interfaz que el RealSubject y deciden si/cuándo/cómo
+> delegarle. Cambia el motivo del control (costo, ubicación, permisos).
+
 ---
 
 ## Diagramas de estructura (PlantUML)
@@ -108,7 +128,6 @@ interface State {
 class Context {
   -state: State
   +request()
-  +setState(State: state)
 }
 class ConcreteStateA {
   +handle(c: Context)
@@ -121,7 +140,6 @@ State <|.. ConcreteStateA
 State <|.. ConcreteStateB
 ConcreteStateA ..> ConcreteStateB : transiciona a
 note right of State : los estados se conocen\ny deciden la transición
-note right of Context : setState() es llamado por\nlos ConcreteStates\n flecha "transiciona a"
 @enduml
 ```
 
@@ -139,7 +157,7 @@ class ConcreteClass {
   #primitiveOp2()
 }
 AbstractClass <|-- ConcreteClass
-note right of AbstractClass : templateMethod() llama a\nlas primitivas (IoC)\n\n primitiveOp() : abstracta (la\n subclase DEBE implementar)\n\n hook() : tiene default (la\n subclase PUEDE redefinir) \n\n helper() : NO es abstracto y\n NO se redefine
+note right of AbstractClass : templateMethod() llama a\nlas primitivas (IoC)
 @enduml
 ```
 
@@ -288,11 +306,11 @@ ConcreteBuilder ..> Product : construye
 ### Adapter vs Decorator vs Proxy (los 3 wrappers)
 Todos envuelven un objeto, diagramas similares, **propósito distinto**:
 
-|  | Interfaz que ofrece | Propósito |
-|--|---|---|
+| | Interfaz que ofrece | Propósito |
+|---|---|---|
 | **Adapter** | **distinta** a la del objeto | hacer compatible una interfaz |
 | **Decorator** | la **misma** + responsabilidades | agregar comportamiento dinámicamente |
-| **Proxy** | la **misma** | controlar el acceso (lazy, remoto, protección) | 
+| **Proxy** | la **misma** | controlar el acceso (lazy, remoto, protección) |
 
 ### Factory Method vs Builder
 - **Factory Method:** suele aparecer con **jerarquías paralelas** (Creator ↔ Product).
